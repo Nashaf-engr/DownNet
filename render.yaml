@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: downnet-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: cd backend && python app.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000
+
+  - type: web
+    name: downnet-frontend
+    env: node
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npm start
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://downnet-backend.onrender.com/api
+      - key: PORT
+        value: 3000
