@@ -8,14 +8,15 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - FLASK_ENV=development
-      - FLASK_DEBUG=True
-      - CORS_ORIGINS=http://localhost:3000
+      - FLASK_ENV=production
+      - FLASK_DEBUG=False
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000}
     volumes:
       - ./backend:/app
     command: python app.py
     networks:
       - downnet-network
+    restart: unless-stopped
 
   frontend:
     build:
@@ -24,7 +25,8 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - REACT_APP_API_URL=http://localhost:5000/api
+      - REACT_APP_API_URL=${REACT_APP_API_URL:-http://localhost:5000/api}
+      - NODE_ENV=production
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -33,6 +35,7 @@ services:
       - backend
     networks:
       - downnet-network
+    restart: unless-stopped
 
 networks:
   downnet-network:
