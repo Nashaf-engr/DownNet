@@ -1,0 +1,74 @@
+.platform-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.platform-group label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 0.75rem;
+}
+
+.platform-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0.5rem;
+  background: #2d2540;
+  border: 2px solid #3d3555;
+  border-radius: 8px;
+  color: #a0a0a0;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.platform-card:hover {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.platform-card.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
+  border-color: #6366f1;
+  color: #e0e0e0;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+}
+
+.platform-card svg {
+  transition: transform 0.3s ease;
+}
+
+.platform-card:hover svg {
+  transform: scale(1.1);
+}
+
+.platform-card.active svg {
+  color: #6366f1;
+}
+
+@media (max-width: 768px) {
+  .platforms-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .platform-card {
+    padding: 0.75rem 0.25rem;
+    font-size: 0.7rem;
+  }
+}
